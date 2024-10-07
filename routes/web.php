@@ -1,7 +1,11 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\CustomerRequestsController;
+use App\Http\Controllers\FCYRequestController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Auth\Events\Verified;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +19,7 @@ use App\Http\Controllers\ProfileController;
 */
 
 Route::get('/', function () {
-    return view('dashboard');
+    return view('auth.login');
 });
 
 Route::get('/dashboard', function () {
@@ -41,5 +45,17 @@ Route::get('/buttons/icon', function () {
 Route::get('/buttons/text-icon', function () {
     return view('buttons-showcase.text-icon');
 })->middleware(['auth'])->name('buttons.text-icon');
+
+Route::resource('fcy_requests', FCYRequestController::class)
+    ->only(['index', 'store'])
+    ->middleware(['auth', 'verified']);
+
+Route::resource('customerRequest', CustomerRequestsController::class)
+    ->only(['index', 'create', 'store'])
+    ->middleware(['auth', 'verified']);
+
+Route::resource('customers', CustomerController::class)
+    ->only(['index', 'create', 'store', 'destroy'])
+    ->middleware(['auth', 'verified']);
 
 require __DIR__ . '/auth.php';
