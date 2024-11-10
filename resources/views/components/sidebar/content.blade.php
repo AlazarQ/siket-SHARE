@@ -15,55 +15,61 @@
     </x-sidebar.link>
 
     <x-sidebar.dropdown
-        title="Customers"
-        :active="Str::startsWith(request()->route()->uri(), 'customers')"
+        title="Shareholders"
+        :active="Str::startsWith(request()->route()->uri(), 'shareholders')"
     >
         <x-slot name="icon">
             <x-icons.customer class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
         </x-slot>
 
         <x-sidebar.sublink
-            title="Add Customers"
-            href="{{ route('customers.create')}}"
-            :active="request()->routeIs('customers.create')"
+            title="Register Shareholder"
+            href="{{ route('shareholders.create')}}"
+            :active="request()->routeIs('shareholders.create')"
         />
 
         <x-sidebar.sublink
-            title="Manage Customers"
-            href="{{ route('customers.index') }}"
-            :active="request()->routeIs('customers.index')"
+            title="Manage Shareholder"
+            {{-- href="{{ route('shareholders.index') }}"
+            :active="request()->routeIs('shareholders.index')" --}}
         />
 
-        {{-- <x-sidebar.sublink
-            title="List Customers"
-            href="{{ route('customers.index') }}"
-            :active="request()->routeIs('customers.index')"
-        /> --}}
+        <x-sidebar.sublink
+            title="List shareholders"
+            {{-- href="{{ route('shareholders.index') }}"
+            :active="request()->routeIs('shareholders.index')" --}}
+        />
     </x-sidebar.dropdown>
 
     <x-sidebar.dropdown
-        title="FCY Requests"
-        :active="Str::startsWith(request()->route()->uri(), 'customerRequest')"
+        title="Attendance"
+        :active="Str::startsWith(request()->route()->uri(), 'attendance')"
     >
         <x-slot name="icon">
             <x-icons.currency class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
         </x-slot>
 
         <x-sidebar.sublink
-            title="New Request (FCY)"
-            href=" {{ route('customerRequest.create')}}"
-            :active="request()->routeIs('customerRequest.create')"
+            title="Attendance Settings"
+            href=" {{ route('attendance.index')}}"
+            :active="request()->routeIs('attendance.index')"
         />
         <x-sidebar.sublink
-            title="Manage Requests"
-            href="{{ route('customerRequest.index')}}"
-            :active="request()->routeIs('customerRequest.index')"
+            title="Attendance Link 1"
+            {{-- href="{{ route('customerRequest.index')}}"
+            :active="request()->routeIs('customerRequest.index')" --}}
         />
-        {{-- <x-sidebar.sublink
-            title="List Requests"
-            href="#"
-            :active="request()->routeIs('buttons.text-icon')"
-        /> --}}
+
+        <x-sidebar.sublink
+            title="Attendance Link 2"
+            {{-- href="{{ route('customerRequest.index')}}"
+            :active="request()->routeIs('customerRequest.index')" --}}
+        />
+        <x-sidebar.sublink
+        title="Attendance Link 3"
+        {{-- href="{{ route('customerRequest.index')}}"
+        :active="request()->routeIs('customerRequest.index')" --}}
+        />
     </x-sidebar.dropdown>
 
     <x-sidebar.link
