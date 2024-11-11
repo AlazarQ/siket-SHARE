@@ -30,7 +30,9 @@
                 </div>
 
                 <div class="flex gap-4">
-                    <x-bladewind::input name="shares" required="true" label="Share Value"
+                    <x-bladewind::input name="shares" type="number" min="0" required="true" label="Subscribed Share"
+                        error_message="This field cannot be null" />
+                        <x-bladewind::input name="sharesPaid" required="true" type="number" min="0" label="Paid Share"
                         error_message="This field cannot be null" />
                 </div>
 

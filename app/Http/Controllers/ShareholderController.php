@@ -30,6 +30,7 @@ class ShareholderController extends Controller
             'country' => 'required|string|max:100',
             'nationality' => 'required|string|max:100',
             'shares' => 'required|numeric|min:0',
+            'sharesPaid' => 'required|numeric|min:0',
             'shareholder_documents' => 'required|file|mimes:pdf,doc,docx,png,jpg,jpeg|max:2048',
             'remark' => 'required|string|max:500',
             'user_id' => '1',

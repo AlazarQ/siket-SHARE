@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('country');
             $table->string('nationality');
             $table->decimal('shares', 10, 2);
+            $table->decimal('sharesPaid', 10, 2);
             $table->string('remark'); // Amount of shares owned
             $table->string('shareholder_documents');
             // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

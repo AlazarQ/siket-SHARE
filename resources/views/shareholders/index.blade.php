@@ -17,7 +17,8 @@
                 <th>Email</th>
                 <th>Country</th>
                 <th>Nationality</th>
-                <th>No of Shares</th>
+                <th>Subscribed Shares</th>
+                <th>Paid Shares</th>
                 <th>Documents</th>
                 <th>Actions</th>
             </x-slot>
@@ -26,9 +27,10 @@
                     <td>{{ $shareholder->id }}</td>
                     <td>{{ $shareholder->name }}</td>
                     <td>{{ $shareholder->email }}</td>
-                    <td>ET</td>
-                    <td>ET</td>
-                    <td>200.23</td>
+                    <td> {{ $shareholder->country }}</td>
+                    <td>{{ $shareholder->nationality }}</td>
+                    <td>{{ $shareholder->shares }}</td>
+                    <td>{{ $shareholder->sharesPaid }}</td>
                     <td>
                         @if ($shareholder->document)
                             <a href="{{ asset('storage/' . $shareholder->document) }}" target="_blank">Download

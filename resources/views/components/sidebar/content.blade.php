@@ -19,7 +19,7 @@
         :active="Str::startsWith(request()->route()->uri(), 'shareholders')"
     >
         <x-slot name="icon">
-            <x-icons.customer class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
+            <x-icons.shareholders class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
         </x-slot>
 
         <x-sidebar.sublink
@@ -70,17 +70,37 @@
             <x-icons.meeting class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
         </x-slot>
 
-        {{-- <x-sidebar.sublink
-            title="Create Meetings"
-            href=" {{ route('meetings.create')}}"
-            :active="request()->routeIs('meetings.create')"
-            disabled="true"
-        /> --}}
-
         <x-sidebar.sublink
             title="Manage Meetings"
             href=" {{ route('meetings.index')}}"
             :active="request()->routeIs('meetings.index')"
+        />
+    </x-sidebar.dropdown>
+
+    <x-sidebar.dropdown
+        title="Settings"
+        {{-- :active="Str::startsWith(request()->route()->uri(), 'meetings')" --}}
+    >
+        <x-slot name="icon">
+            <x-icons.cogs class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
+        </x-slot>
+
+        <x-sidebar.sublink
+            title="Shareholder"
+            {{-- href=" {{ route('meetings.index')}}"
+            :active="request()->routeIs('meetings.index')" --}}
+        />
+
+        <x-sidebar.sublink
+            title="Attendance"
+            {{-- href=" {{ route('meetings.index')}}"
+            :active="request()->routeIs('meetings.index')" --}}
+        />
+
+        <x-sidebar.sublink
+            title="Meeting"
+            {{-- href=" {{ route('meetings.index')}}"
+            :active="request()->routeIs('meetings.index')" --}}
         />
     </x-sidebar.dropdown>
 
