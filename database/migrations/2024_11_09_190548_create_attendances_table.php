@@ -13,11 +13,9 @@ return new class extends Migration
     {
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
-            $table->string('shortCode');
-            $table->string('paramType');
-            $table->string('paramValue');
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->timestamps();
+            $table->foreignId('meeting_id')->constrained()->onDelete('cascade'); // Relation to Meeting
+            $table->foreignId('shareholder_id')->constrained()->onDelete('cascade'); // Relation to Shareholder
+            $table->boolean('present')->default(false); // Whether shareholder attended the meeting
         });
     }
 

@@ -5,7 +5,7 @@
         <x-bladewind::notification />
         <x-bladewind::card>
             <form id="shareholder-form" method="POST" action="{{ route('shareholders.store') }}"
-                class="register-customer-form">
+                class="register-customer-form" enctype="multipart/form-data">
                 @csrf
 
                 <h1 class="my-2 text-2xl font-light text-blue-900/80">Register Shareholder</h1>
@@ -13,19 +13,19 @@
                     Please Fill the below form according to the shareholder documents!!
                 </p>
 
-                <x-bladewind::input name="fname" required="true" label="Full Name"
+                <x-bladewind::input name="name" required="true" label="Full Name"
                     error_message="Please provide Full Name" />
 
                 <div class="flex gap-4">
                     <x-bladewind::input name="email" required="true" label="Email"
                         error_message="Please enter valid email" />
-                    <x-bladewind::input name="mobile" label="Mobile" error_message="Please provide mobile no" />
+                    <x-bladewind::input name="phone" label="Phone Number" error_message="Please provide Phone no" />
                 </div>
 
                 <div class="flex gap-4">
-                    <x-bladewind::input name="shCountry" required="true" label="Country"
+                    <x-bladewind::input name="country" required="true" label="Country"
                         error_message="Please choose country from the list" />
-                    <x-bladewind::input name="shNationality" required="true" label="Nationality"
+                    <x-bladewind::input name="nationality" required="true" label="Nationality"
                         error_message="Please choose shareholder's nationality" />
                 </div>
 
@@ -37,8 +37,11 @@
                 <x-bladewind::filepicker name="shareholder_documents" required="true"
                     placeholder="Upload Shareholder Documents" />
 
-                <x-bladewind::textarea required="true" name="remark"
-                    error_message="Please provide a remark... It's mandatory" label="Remark"></x-bladewind::textarea>
+                <x-bladewind::textarea required="true" name="address"
+                    error_message="Please provide a Address of Shareholder" label="Address"></x-bladewind::textarea>
+
+                <x-bladewind::textarea name="remark"
+                     label="Remark"></x-bladewind::textarea>
 
                 <div class="text-right">
                     <x-bladewind::button id="submit-btn" has_spinner="true" type="primary" can_submit="true"

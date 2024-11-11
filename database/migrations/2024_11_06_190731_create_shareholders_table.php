@@ -15,13 +15,25 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('mobile');
-            $table->string('shCountry');
-            $table->string('shNationality');
-            $table->string('remark');
-            $table->decimal('shares', 10, 2); // Amount of shares owned
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->string('phone')->nullable();
+            $table->text('address')->nullable();
+            $table->string('country');
+            $table->string('nationality');
+            $table->decimal('shares', 10, 2);
+            $table->string('remark'); // Amount of shares owned
+            $table->string('shareholder_documents');
+            // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
+            // $table->id();
+            // $table->string('name');
+            // $table->string('email')->unique();
+            // $table->string('mobile');
+            // $table->string('shCountry');
+            // $table->string('shNationality');
+            // $table->string('remark');
+            // $table->decimal('shares', 10, 2); // Amount of shares owned
+            // $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            // $table->timestamps();
         });
     }
 
