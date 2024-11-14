@@ -8,7 +8,7 @@
     </x-slot>
 
     <div class="p-6 overflow-hidden bg-white rounded-md shadow-md dark:bg-dark-eval-1">
-        <div class="grid grid-cols-1 md:grid-cols-5 gap-2">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
             <div class="p-4 rounded shadow text-center">
                 <x-icons.shareholders class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
                 <h4>Shareholders</h4>
@@ -24,21 +24,12 @@
                 <h4>Paid</h4>
                 <p class="text-2xl">{{ $paidTotal }}</p>
             </div>
-            <div class="p-4 rounded shadow text-center">
-                <x-icons.shares class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
-                <h4>Total District</h4>
-                <p class="text-2xl">{{ $districts }}</p>
-            </div>
-            <div class="p-4 rounded shadow text-center">
-                <x-icons.shares class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
-                <h4>Total Branch</h4>
-                <p class="text-2xl">{{ $branches }}</p>
-            </div>
+            
         </div><br>
-        <h3 class="text-lg font-semibold mb-4">{{ __('Branches per District') }}</h3>
+        {{-- <h3 class="text-lg font-semibold mb-4">{{ __('Branches per District') }}</h3>
         <div class="p-4 rounded shadow text-left">
             <canvas id="branchesPerDistrictChart" width="100" height="50"></canvas>
-        </div>
+        </div> --}}
         
     </div>
 

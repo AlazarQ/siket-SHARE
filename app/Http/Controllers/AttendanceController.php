@@ -14,24 +14,15 @@ class AttendanceController extends Controller
         // Get all shareholders
         $shareholders = Shareholder::all();
 
-        // Get all attendance records (filter by meeting_id if applicable)
         $attendances = Attendance::all();
 
-        // Prepare an array of shareholder IDs who have attended
         $attendedShareholders = $attendances->pluck('shareholder_id')->toArray();
 
         return view('attendances.index', compact('shareholders', 'attendedShareholders'));
-        // $shareholders = Shareholder::all();
-        // $attendances = Attendance::all();
-        // return view('attendances.index', compact('attendances'));
     }
 
     public function create()
     {
-        // $shareholders = Shareholder::all();
-        // // return view('shareholders.index', compact('shareholders'));
-        // return view('attendances.create', compact('shareholders'));
-        // Get the IDs of shareholders who have already attended
         $attendedShareholderIds = Attendance::pluck('shareholder_id')->toArray();
 
         // Exclude those shareholders from the list
@@ -53,7 +44,7 @@ class AttendanceController extends Controller
 
         if (!$meeting) {
             // If there is no open meeting, return an error (or handle it in your UI)
-            return redirect()->route('attendances.index')->with('error', 'No open meeting found.');
+            return redirect()->route('attendances.create')->with('error', 'No open meeting found.');
         }
 
         // Create the attendance record
@@ -76,6 +67,31 @@ class AttendanceController extends Controller
     {
         //
     }
+
+    public function showAttendanceStats()
+{
+    // Get the currently open meeting
+    $meeting = Meeting::where('status', 'open')->first();
+
+    if (!$meeting) {
+        // If there's no open meeting, return an error
+        return redirect()->route('attendances.index')->with('error', 'No open meeting found.');
+    }
+
+    // Safely access the created_at property after checking if the meeting exists
+    $meetingDate = $meeting->meeting_date ? $meeting->meeting_date : 'N/A';  // Default to 'N/A' if created_at is null
+
+    // Get the current date and time
+    $currentDateTime = now()->format('Y-m-d H:i:s'); // You can change the format as per your needs
+
+    // Get the number of attendees for the open meeting
+    $attendeesCount = Attendance::where('meeting_id', $meeting->id)->count();
+
+    // Pass the data to the view
+    return view('attendances.stats', compact('attendeesCount', 'currentDateTime', 'meeting'));
+
+}
+
 
     public function destroy($id)
     {

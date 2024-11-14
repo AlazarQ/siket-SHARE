@@ -56,9 +56,9 @@
         />
         
         <x-sidebar.sublink
-        title="Attendance Link 3"
-        {{-- href="{{ route('customerRequest.index')}}"
-        :active="request()->routeIs('customerRequest.index')" --}}
+        title="Attendance Status"
+        href="{{ route('attendances.stats')}}"
+        :active="request()->routeIs('attendances.stats')"
         />
     </x-sidebar.dropdown>
 

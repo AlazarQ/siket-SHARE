@@ -45,6 +45,7 @@ Route::get('shareholders/{id}/edit', [ShareholderController::class, 'edit'])->na
 Route::resource('meetings', MeetingController::class);
 Route::get('meetings/{id}/edit', [MeetingController::class, 'edit'])->name('meetings.edit');
 
-Route::resource('attendances', AttendanceController::class)->only(['index', 'create', 'store', 'show']);
+Route::resource('attendances', AttendanceController::class)->only(['index', 'create', 'store']);
+Route::get('attendances/stats', [AttendanceController::class, 'showAttendanceStats'])->name('attendances.stats');
 
 require __DIR__ . '/auth.php';

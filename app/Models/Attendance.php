@@ -8,9 +8,7 @@ use OwenIt\Auditing\Contracts\Auditable;
 class Attendance extends Model implements Auditable
 {
     use \OwenIt\Auditing\Auditable;
-    // protected $fillable = [
-    //     'shortCode', 'paramType', 'paramValue'
-    // ];
+
     protected $fillable = ['shareholder_id', 'meeting_id', 'attended'];
 
     public function shareholder()

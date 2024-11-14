@@ -1,34 +1,49 @@
 <x-app-layout>
-    <x-slot name="header"></x-slot>
+    <x-slot name="header">
+        <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <h2 class="text-xl font-semibold leading-tight">
+                {{ __('Shareholders List (Attendance)') }}
+            </h2>
+        </div>
+    </x-slot>
+
     <div class="p-6 bg-white rounded-md shadow-md dark:bg-dark-eval-1">
-        <x-bladewind::notification />
-        <x-bladewind::card>
-            <form method="POST" action="{{ route('attendance.store') }}" class="attendance-setting-form">
-                <h1 class="my-2 text-2xl font-light text-blue-900/80">Attendance Settings (Parameter)</h1>
-                @csrf
-                <x-bladewind::input name="shortCode" required="true" label="Parameter Code" />
-                <x-bladewind::input name="paramType" required="true" label="Parameter Type" />
-                <x-bladewind::input name="paramValue" required="true" label="Parameter Value" />
+        <!-- Display success or error messages -->
+        @if (session('success'))
+            <div class="alert alert-success mb-4">
+                {{ session('success') }}
+            </div>
+        @endif
 
-                <div class="flex gap-4">
+        @if (session('error'))
+            <div class="alert alert-danger mb-4">
+                {{ session('error') }}
+            </div>
+        @endif
 
-                    <x-bladewind::input name="reserved1" required="true" label="Reserved 1" />
+        <x-bladewind::table :rows="$shareholders" divider="thin">
+            <x-slot name="header">
+                <th>Name</th>
+                <th>Email</th>
+                <th>No of Shares</th>
+                <th>Actions</th>
+            </x-slot>
 
-                    <x-bladewind::input name="reserved2" label="Reserved 1" />
-
-                </div>
-                <div class="text-right">
-                    <x-bladewind::button class="mt-4" can_submit="true">{{ __('Save') }}</x-bladewind::button>
-                </div>
-            </form>
-        </x-bladewind::card>
+            @foreach ($shareholders as $shareholder)
+                <tr>
+                    <td>{{ $shareholder->name }}</td>
+                    <td>{{ $shareholder->email }}</td>
+                    <td>{{ $shareholder->shares }}</td>
+                    <td>
+                        <form action="{{ route('attendances.store', $shareholder->id) }}" method="POST">
+                            @csrf
+                            @method('POST')
+                            <input type="hidden" name="shareholder_id" value="{{ $shareholder->id }}">
+                            <x-bladewind::button type="submit" class="bg-green-500">Attend</x-bladewind::button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+        </x-bladewind::table>
     </div>
 </x-app-layout>
-<script>
-    document.querySelector('.attendance-setting-form').addEventListener('submit', function(e) {
-        e.preventDefault(); 
-        if (validateForm('.attendance-setting-form')) {
-            this.submit(); // Submit the form after validation
-        }
-    });
-</script>

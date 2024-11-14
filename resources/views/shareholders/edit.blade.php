@@ -21,23 +21,28 @@
             </div>
 
             <div class="flex gap-4">
-                <x-bladewind::input name="shCountry" required="true" label="Country"
-                    error_message="Please choose country from the list" />
-                <x-bladewind::input name="shNationality" required="true" label="Nationality"
-                    error_message="Please choose shareholder's nationality" />
+                <x-bladewind::input name="country" required="true" label="Country"
+                    error_message="Please choose country from the list"
+                    value="{{ old('country', $shareholder->country) }}" />
+                <x-bladewind::input name="nationality" required="true" label="Nationality"
+                    error_message="Please choose shareholder's nationality"
+                    value="{{ old('nationality', $shareholder->nationality) }}" />
             </div>
 
             <div class="flex gap-4">
-                <x-bladewind::input name="shares" required="true" label="Share Value"
-                    error_message="This field cannot be null" />
+                <x-bladewind::input name="shares" required="true" label="Subscribed Share"
+                    error_message="This field cannot be null" value="{{ old('shares', $shareholder->shares) }}" />
+                <x-bladewind::input name="sharesPaid" required="true" label="Paid Share"
+                    error_message="This field cannot be null"
+                    value="{{ old('sharesPaid', $shareholder->sharesPaid) }}" />
             </div>
 
             <x-bladewind::filepicker name="shareholder_documents" required="true"
                 placeholder="Upload Shareholder Documents" />
 
-            <x-bladewind::textarea required="true" name="address"
-                error_message="Please provide a remark... It's mandatory" label="Remark"
+            <x-bladewind::textarea required="true" name="address" error_message="Please provide address" label="Address"
                 class="mb-4">{{ old('address', $shareholder->address) }}></x-bladewind::textarea>
+            
 
             <div class="text-right">
                 <x-bladewind::button id="submit-btn" has_spinner="true" type="primary" can_submit="true" class="mt-3">
